@@ -15,7 +15,7 @@ contains
         real, intent(in) :: c
         real, intent(out) :: f
 
-        f = c * 9 / 5 +32    
+        f = (c * 9 / 5) + 32    
 
         print *, "Conversion to F: ", f
     end subroutine celsiusToFahrenheit
@@ -43,7 +43,7 @@ contains
         real, intent(in) :: f
         real, intent(out) :: c
 
-        c = f - 32 * 5 /9
+        c = (f - 32) * 5 / 9
 
         print *, "Conversion to C: ", c
     end subroutine fahrenheitToCelsius
@@ -57,7 +57,7 @@ contains
         real, intent(in) :: f
         real, intent(out) :: k
 
-        k = f - 32 * 5 / 9 + 273.15
+        k = (f - 32) * 5 / 9 + 273.15
 
         print *, "Conversion to K: ", k
     end subroutine fahrenheitToKelvin
@@ -85,7 +85,7 @@ contains
         real, intent(in) :: k
         real, intent(out) :: f
 
-        f = k - 273.15 * 9 /5 + 32
+        f = (k - 273.15) * 9 / 5 + 32
 
         print *, "Conversion to F: ", f
     end subroutine kelvinToFahrenheit
