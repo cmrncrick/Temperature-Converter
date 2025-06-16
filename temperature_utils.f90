@@ -17,7 +17,7 @@ contains
 
         f = (c * 9 / 5) + 32    
 
-        print *, "Conversion to F: ", f
+        print '(A, f10.2)', "Conversion to F: ", f
     end subroutine celsiusToFahrenheit
 
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -31,7 +31,7 @@ contains
 
         k = c + 273.15
 
-        print *, "Conversion to K: ", k
+        print '(A, f10.2)', "Conversion to K: ", k
     end subroutine celsiusToKelvin
 
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -45,7 +45,7 @@ contains
 
         c = (f - 32) * 5 / 9
 
-        print *, "Conversion to C: ", c
+        print '(A, f10.2)', "Conversion to C: ", c
     end subroutine fahrenheitToCelsius
 
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -59,7 +59,7 @@ contains
 
         k = (f - 32) * 5 / 9 + 273.15
 
-        print *, "Conversion to K: ", k
+        print '(A, f10.2)', "Conversion to K: ", k
     end subroutine fahrenheitToKelvin
 
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -73,7 +73,7 @@ contains
 
         c = k - 273.15
         
-        print *, "Conversion to C: ", c
+        print '(A, f10.2)', "Conversion to C: ", c
     end subroutine kelvinToCelsius
 
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -87,7 +87,7 @@ contains
 
         f = (k - 273.15) * 9 / 5 + 32
 
-        print *, "Conversion to F: ", f
+        print '(A, f10.2)', "Conversion to F: ", f
     end subroutine kelvinToFahrenheit
 
 end module temperature_utils
