@@ -17,65 +17,91 @@ program main
         ! Read first character from user input
         read(*, '(A1)') fromUnit
 
-        ! Getting input temp data from user
-        print *, "Enter temperature value to convert or (q) to quit"
+        select case (fromUnit)
 
-        ! Need to ensure it is a real num type
-        read(*, *) inputTemp
+            ! Checking for proper input of fromUnit
+            case ('f', 'c', 'k', 'q')
 
-        ! Ask user what unit to convert to
-        print *, "What unit do you want to convert to: (f)ahrenheit, (c)elsius, (k)elvin or (q) to quit"
+                ! Getting input temp data from user
+                print *, "Enter temperature value to convert or (q) to quit"
 
-        ! Read first character from user input
-        read(*, '(A1)') toUnit
+                ! Need to ensure it is a real num type
+                read(*, *) inputTemp
 
-        ! Performing actions based on user input
-        select case (fromUnit) 
+                ! Ask user what unit to convert to
+                print *, "What unit do you want to convert to: (f)ahrenheit, (c)elsius, (k)elvin or (q) to quit"
 
-            ! Converting from fahrenheit
-            case ('f')
-                if (toUnit == 'c') then
-                    call fahrenheitToCelsius(inputTemp, outputTemp)
+                ! Read first character from user input
+                read(*, '(A1)') toUnit
 
-                else
-                    call fahrenheitToKelvin(inputTemp, outputTemp)
-                end if
+                select case (toUnit)
 
-                exit
+                    ! Checking for proper toUnit input
+                    case ('f', 'c', 'k', 'q')
 
-            ! Converting from celsius
-            case ('c')
-                if (toUnit == 'f') then 
-                    call celsiusToFahrenheit(inputTemp, outputTemp)
+                        ! Performing actions based on user input
+                        select case (fromUnit) 
 
-                else
-                    call celsiusToKelvin(inputTemp, outputTemp)
-                end if
+                            ! Converting from fahrenheit
+                            case ('f')
+                                if (toUnit == 'c') then
+                                    call fahrenheitToCelsius(inputTemp, outputTemp)
 
-                exit
+                                else
+                                    call fahrenheitToKelvin(inputTemp, outputTemp)
+                                end if
 
-            ! Converting from kelvin
-            case ('k')
-                if (toUnit == 'f') then
-                    call kelvinToFahrenheit(inputTemp, outputTemp)
+                                exit
 
-                else
-                    call kelvinToCelsius(inputTemp, outputTemp)
-                end if
+                            ! Converting from celsius
+                            case ('c')
+                                if (toUnit == 'f') then 
+                                    call celsiusToFahrenheit(inputTemp, outputTemp)
 
-                exit
+                                else
+                                    call celsiusToKelvin(inputTemp, outputTemp)
+                                end if
 
-            ! Quit program if needed
-            case ('q')
+                                exit
 
-                print *, "Quitting"
+                            ! Converting from kelvin
+                            case ('k')
+                                if (toUnit == 'f') then
+                                    call kelvinToFahrenheit(inputTemp, outputTemp)
 
-                exit
+                                else
+                                    call kelvinToCelsius(inputTemp, outputTemp)
+                                end if
+
+                                exit
+
+                            ! Quit program if needed
+                            case ('q')
+
+                                print *, "Quitting"
+
+                                exit
+                            
+                            ! ! Default value if other than unit or quit command
+                            ! case default
+
+                            !     print *, "Not a valid input!"
+
+                        end select
+                    
+                        ! If the user inputs a wrong value for fromUnit
+                    case default
+
+                        print *, "Not a valid input!"
+                        cycle
+
+                end select
             
-            ! Default value if other than unit or quit command
+            ! If the user inputs a wrong value for toUnit
             case default
 
                 print *, "Not a valid input!"
+                cycle
 
         end select
 
