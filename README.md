@@ -1,7 +1,8 @@
 # Fortran Temperature Converter
 
 This is a command-line Fortran program that converts temperatures between Fahrenheit, Celsius, and Kelvin.  
-It includes user-friendly input validation and supports quitting at any input step.
+It includes user-friendly input validation and supports quitting at any input step. This was meant to be a simple 
+project to help develop my skills in Fotran. 
 
 ## Features
 
