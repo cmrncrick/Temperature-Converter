@@ -8,6 +8,7 @@ program main
     ! Define needed variables
     real :: inputTemp, outputTemp
     character(len=1) :: fromUnit, toUnit
+    character(len=20) :: tempInput
     integer :: io_status
 
     do
@@ -21,15 +22,38 @@ program main
         select case (fromUnit)
 
             ! Checking for proper input of fromUnit
-            case ('f', 'c', 'k', 'q')
+            case ('f', 'c', 'k')
 
-                ! Getting input temp data from user
-                print *, "Enter temperature value to convert or (q) to quit"
+                do
+                    ! Getting input temp data from user
+                    print *, "Enter temperature value to convert or (q) to quit"
 
-                ! Need to ensure it is a real num type
-                read(*, *, IOSTAT=io_status) inputTemp
+                    ! Need to ensure it is a real num type
+                    read(*, '(A)', IOSTAT=io_status) tempInput
 
-                if (io_status == 0) then
+                    ! If the user wants to quit
+                    if (trim(tempInput) == 'q') then 
+
+                        print *, "Quitting"
+
+                        stop 
+                    end if
+
+                    ! Converting 
+                    read(tempInput, *, IOSTAT=io_status) inputTemp
+
+                    ! If the user put in NaN
+                    if (io_status == 0) then
+                        print *, inputTemp
+                        exit
+                    else 
+                        write(*, *) "Invalid Input. Please enter a number."
+                    end if
+
+                end do
+
+                do
+
                     ! Ask user what unit to convert to
                     print *, "What unit do you want to convert to: (f)ahrenheit, (c)elsius, (k)elvin or (q) to quit"
 
@@ -40,6 +64,14 @@ program main
 
                         ! Checking for proper toUnit input
                         case ('f', 'c', 'k', 'q')
+
+                            if (toUnit == 'q') then
+
+                                print *, "Quitting"
+
+                                exit
+                            
+                            end if
 
                             ! Performing actions based on user input
                             select case (fromUnit) 
@@ -53,7 +85,7 @@ program main
                                         call fahrenheitToKelvin(inputTemp, outputTemp)
                                     end if
 
-                                    exit
+                                    stop !exit
 
                                 ! Converting from celsius
                                 case ('c')
@@ -64,7 +96,7 @@ program main
                                         call celsiusToKelvin(inputTemp, outputTemp)
                                     end if
 
-                                    exit
+                                    stop !exit
 
                                 ! Converting from kelvin
                                 case ('k')
@@ -75,41 +107,40 @@ program main
                                         call kelvinToCelsius(inputTemp, outputTemp)
                                     end if
 
-                                    exit
-
-                                ! Quit program if needed
-                                case ('q')
-
-                                    print *, "Quitting"
-
-                                    exit
+                                    stop !exit
                                 
-                                ! ! Default value if other than unit or quit command
-                                ! case default
+                                ! Default value if other than unit or quit command
+                                case default
 
-                                !     print *, "Not a valid input!"
+                                    print *, "Not a valid input!"
 
                             end select
                         
-                        ! If the user inputs a wrong value for fromUnit
                         case default
 
                             print *, "Not a valid input!"
                             cycle
 
+                    ! toUnit end
                     end select
-                
-                else
-                    write(*, *) "Invalid input. Please enter a real number."
 
-                end if
+                end do 
+            
+            case ('q')
 
-                ! If the user inputs a wrong value for toUnit
-                case default
+                print *, "Quitting"
 
-                    print *, "Not a valid input!"
-                    cycle
+                exit
+            
+            ! If the user inputs a wrong value for fromUnit
+            case default
 
+                print *, "Not a valid input!"
+                cycle
+
+            ! end select
+        
+        ! fromUnit end 
         end select
 
     end do
