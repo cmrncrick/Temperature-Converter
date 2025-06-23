@@ -35,12 +35,15 @@ Start the program from your terminal:
 ### Usage Example
 
 Choose unit to convert from: (f)ahrenheit, (c)elsius, (k)elvin or (q) to quit
+
 f
 
 Enter temperature value to convert or (q) to quit
+
 100
 
 What unit do you want to convert to: (f)ahrenheit, (c)elsius, (k)elvin or (q) to quit
+
 c
 
 Converted temperature:   37.78
