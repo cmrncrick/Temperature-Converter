@@ -2,7 +2,7 @@ program main
 
     ! Use all from temperature_utils module
     use temperature_utils
-
+    
     implicit none
 
     ! Define needed variables
